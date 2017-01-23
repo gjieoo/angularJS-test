@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../../angular-1.5.11/angular.js"></script>
+    <style type="text/css">
+        .wrap{
+            border:1px solid #000;
+            width:240px;
+        }
+        .title{
+            font-size:16px;
+            padding-left:3em;
+            background:#000;
+            color:white;
+        }
+        .body{
+            padding:2em;
+        }
+    </style>
+</head>
+<body>
+      <div ng-app="myapp" class="wrap" ng-controller="myctrl">
+           <my-directive my-title="title">
+                  {{text}}
+           </my-directive>
+      </div>
+      <script>
+          var app=angular.module("myapp",[]);
+          app.controller("myctrl",function($scope){
+              $scope.title="click me to expand";
+              $scope.text="welcome";
+          });
+          app.directive("myDirective",function(){
+              return {
+                  restrict:'E',
+                  replace:true,
+                  transclude:true,
+                  scope:{title:'=myTitle'},
+                  template:'<div>'+
+                               '<div class="title" ng-click="toggle()">{{title}}</div>'+
+                               '<div class="body" ng-show="showme" ng-transclude></div>'+
+                          '</div>',
+                  link: function(scope, element, attrs) {
+                      scope.showme=false;
+                      scope.toggle=function toggle(){
+                          scope.showme=!scope.showme;
+                      };
+                  }
+
+              };
+          });
+      </script>
+</body>
+</html>
