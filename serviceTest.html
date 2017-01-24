@@ -5,8 +5,10 @@
     <script src="angular-1.5.11/angular.js"></script>
 </head>
 <body>
-     <!--$location-->
-     <div ng-app="myapp" ng-controller="myctrl">
+<!--$location
+     $location 服务是作为一个参数传递到 controller 中。如果要使用它，需要在 controller 中定义。
+-->
+     <!--<div ng-app="myapp" ng-controller="myctrl">
            <p>当前页面的URL:{{myurl}}</p>
      </div>
      <script>
@@ -14,6 +16,60 @@
          app.controller("myctrl",function($scope,$location){
              $scope.myurl=$location.absUrl();
          });
-     </script>
+     </script>-->
+<!--$http-->
+     <!--<div ng-app="myapp" ng-controller="myctrl">
+         <p>{{myWelcome}}</p>
+     </div>
+     <script>
+         var app=angular.module("myapp",[]);
+         app.controller("myctrl",function($scope,$http){
+             $http.get("initTest.html").then(function(response){
+                 $scope.myWelcome=response.data;
+             });
+         });
+     </script>-->
+<!--$timeout
+     函数延迟2s执行-->
+    <!--<div ng-app="myapp" ng-controller="myctrl">
+        {{text}}
+    </div>
+     <script>
+         var app=angular.module("myapp",[]);
+         app.controller("myctrl",function($scope,$timeout){
+             $scope.text="hello";
+             $timeout(function(){
+                 $scope.text="how are you?"
+             },2000)
+         });
+     </script>-->
+<!--$interval
+     函数每2s执行-->
+     <!--<div ng-app="myapp" ng-controller="myctrl">
+         {{text}}
+     </div>
+     <script>
+         angular.module("myapp",[]).controller("myctrl",function($scope,$interval){
+             $scope.text=new Date().toLocaleTimeString();
+             $interval(function(){
+                 $scope.text=new Date().toLocaleTimeString()
+             },2000);
+         });
+     </script>-->
+<!--创建自定义服务-->
+    <div ng-app="myapp" ng-controller="myctrl">
+        {{num}}
+    </div>
+    <script>
+        var app=angular.module("myapp",[]);
+        app.service("hex",function(){
+            this.myfun=function(x){
+                return x.toString(16);
+            }
+        });
+        app.controller("myctrl",function($scope,hex){
+            $scope.num=hex.myfun(255);
+        });
+    </script>
 </body>
 </html>
