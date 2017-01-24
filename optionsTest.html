@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="angular-1.5.11/angular.js"></script>
+</head>
+<body>
+<div ng-app="myapp" ng-controller="myctrl">
+    <select ng-init="selectName=names[0]" ng-model="selectName" ng-options="x for x in names"></select>
+</div>
+<script>
+    angular.module("myapp",[]).controller("myctrl",function($scope){
+        $scope.names=['google','taobao','mogo']
+    });
+</script>
+<!--
+ng-init设置显示默认值
+
+使用 ng-options 的选项的一个对象， ng-repeat 是一个字符串-->
+</body>
+</html>
