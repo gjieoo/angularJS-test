@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="angular-1.5.11/angular.js"></script>
+</head>
+<body>
+    <div ng-app="myapp" ng-controller="myctrl">
+        {{name}}
+    </div>
+    <script>
+        var app=angular.module("myapp",[]);
+        /*app.controller("myctrl",function($scope){
+            $scope.name="john";
+        });*/
+/*为避免压缩问题改为一下方式*/
+        app.controller("myctrl",["$scope",function($scope){
+            $scope.name="john";
+        }]);
+/*工具方法bind*/
+        function show(n1,n2){
+            alert(n1);
+            alert(n2);
+            alert(this);
+        }
+        angular.bind(document,show)(3,4);//bind改变this的指向
+        var a={name:"john"};
+        var b={age:12};
+
+/*工具方法copy*/
+        var c=angular.copy(a); //此时c和a完全一样
+        var d=angular.copy(a,b); //此时d、b和a完全一样
+/*工具方法extend*/
+        var c=angular.copy(a); //此时c和a完全一样           对象继承
+        var d=angular.copy(b,a); //此时d、b为{name:..., age:...}
+    </script>
+</body>
+</html>
