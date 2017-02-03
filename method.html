@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="angular-1.5.11/angular.js"></script>
+    <script>
+//判断是否为数组，是返回真，否返回假
+        var a=[];
+        angular.isArray(a);
+        console.log(angular.isArray(a));                        //true
+//angular.isFunction/angular.isNumber/angular.isObject/angular.isString/angular.isDate与angular.isArray相同
+
+    </script>
+</head>
+<body>
+    <script>
+        angular.isElement(document.body);
+        console.log(angular.isElement(document.body));         //true
+    </script>
+<!--angular.version  查看angular版本-->
+<!--angular.equals() 判断相等-->
+    <script>
+    var a=1;
+    var b=1;
+    console.log(angular.equals(a,b));                             //true
+    </script>
+<!--angular.forEach  遍历,其中接受三个参数-->
+    <script>
+       //var values=['a','b','c'];
+        var values={name:"hello",age:20};
+        var result=[];
+        angular.forEach(values,function(value,i){
+           /* console.log(value);                        //值
+            console.log(i);                              //下标*/
+            this.push(value+i);                         //this指代result
+        },result);
+        console.log(result);
+    </script>
+<!--angular.fromJson/angular.toJson          解析json格式/将字符串转换为json-->
+    <script>
+      /*  var str='{"name":"hello","age":"20"}';
+        var json=angular.fromJson(str);
+        console.log(json);*/
+        var json={"name":"hello","age":"20"};
+        var str=angular.toJson(json);
+        console.log(str);
+    </script>
+<!--angular.identity(..)  传递什么返回什么-->
+<!--angular.noop(..)  返回空-->
+<!--angular.lowercase(..)/<!--angular.uppercase  转化大小写-->
+<!--angular.element(..)  获取元素-->
+<!--angular.bootstrap(..)  动态初始化-->
+ <!--   <div ng-controller="Aa">
+        {{name}}
+    </div>
+    <div ng-controller="Bb">
+        {{name}}
+    </div>
+    <script>
+            angular.module("myapp1",[]).controller("Aa",function($scope){
+               $scope.name="hello";
+            });
+            angular.module("myapp2",[]).controller("Bb",function($scope){
+               $scope.name="hi";
+            })
+            document.onclick=function(){
+              var oDiv=document.getElementsByTagName('div');
+              angular.bootstrap(oDiv[0],['myapp1']);
+              angular.bootstrap(oDiv[1],['myapp2']);
+        }
+    </script>-->
+
+<!--angular.injector  -->
+
+</body>
+</html>
