@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="angular-1.5.11/angular.js "></script>
+</head>
+<body>
+<div>
+    {{name}}
+</div>
+<!--run   全局-->
+<script>
+    angular.module("myapp",[]).run(['$rootScope',function($rootScope){
+        $rootScope.name="john";
+    }])
+</script>
+</body>
+</html>
