@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="angular-1.5.11/angular.js "></script>
+</head>
+<body>
+    <div ng-app="myapp" ng-controller="myctrl">
+        <p>单价：<input type="text" ng-model="apple.price"/></p>
+        <p>数量：<input type="text" ng-model="apple.num"/></p>
+        <p>运费：{{apple.fre|currency:'￥'}}</p>
+        <p>总价：{{sum()|currency:'￥'}}</p>
+    </div>
+    <script>
+       angular.module("myapp",[]).controller("myctrl",function($scope){
+            $scope.apple={
+                    price:5,
+                    num:1,
+                    fre:10};
+            $scope.sum=function(){
+                return $scope.apple.price*$scope.apple.num+$scope.apple.fre;};
+           $scope.$watch($scope.sum,function(newValue){
+              return $scope.apple.fre= newValue>=100?0:10;
+           },true);   //第三个参数为TRUE时可监听整体，否则只能监听单值
+        });
+
+    </script>
+</body>
+</html>
